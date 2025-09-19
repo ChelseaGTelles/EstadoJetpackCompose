@@ -17,14 +17,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun WellnessTaskItem(
     taskName: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
     onClose: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var checkedState by rememberSaveable { mutableStateOf(false) }
-
     Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        modifier = modifier, verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             modifier = Modifier
@@ -33,8 +32,8 @@ fun WellnessTaskItem(
             text = taskName
         )
         Checkbox(
-            checked = checkedState,
-            onCheckedChange = { checkedState = it }
+            checked = checked,
+            onCheckedChange = onCheckedChange
         )
         IconButton(onClick = onClose) {
             Icon(Icons.Filled.Close, contentDescription = "Close")
